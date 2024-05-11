@@ -1,3 +1,5 @@
+[![](https://github.com/SingleStepTests/z80/actions/workflows/validate.yml/badge.svg)](https://github.com/SingleStepTests/z80/actions/workflows/validate.yml)
+
 Very quick overview
 
 Each .json file represents an instruction sequence. Each one contains 1000 tests in this format:

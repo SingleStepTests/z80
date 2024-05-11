@@ -1,0 +1,40 @@
+name: Validate
+
+on:
+  push:
+    paths:
+    - '.github/workflows/validate.yml'
+    - 'v1/*.json'
+  pull_request:
+    paths:
+    - '.github/workflows/validate.yml'
+    - 'v1/*.json'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.2'
+
+    - name: Install dependencies
+      run: |
+        curl -L curl -L https://zxe.io/scripts/add-zxe-apt-repo.sh | sudo sh
+        sudo apt-get -y install libz80-dev
+        gem install z80
+
+    - name: Download runner
+      run: |
+        curl -L $(
+          curl -s https://api.github.com/repos/redcode/run-jsmoo-z80-test/releases/latest |
+          grep tar.xz\" | grep browser_download_url | cut -d : -f 2,3 | tr -d '" '
+        ) | xz -cd | tar --strip-components=1 -xf -
+
+    - name: Run tests
+      run:
+        ./run-jsmoo-z80-test v1/*.json
