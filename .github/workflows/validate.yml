@@ -24,7 +24,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        curl -L curl -L https://zxe.io/scripts/add-zxe-apt-repo.sh | sudo sh
+        curl -L https://zxe.io/scripts/add-zxe-apt-repo.sh | sudo sh
         sudo apt-get -y install libz80-dev
         gem install z80
 
