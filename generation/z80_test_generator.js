@@ -2012,9 +2012,8 @@ class Z80_test_generator {
         let ta = this.readreg('HL');
         this.regs.WZ = (ta + 1) & 0xFFFF;
         let data = this.read(ta);
-        this.wait(1);
+        this.wait(4);
         this.write(ta, ((data << 4) | (this.regs.A & 0x0F)) & 0xFF);
-        this.wait(3);
         this.regs.A = (this.regs.A & 0xF0) | (data >>> 4);
 
         this.regs.F.N = this.regs.F.H = 0;
@@ -2089,9 +2088,8 @@ class Z80_test_generator {
         let ta = this.readreg('HL');
         this.regs.WZ = (ta + 1) & 0xFFFF;
         let data = this.read(ta);
-        this.wait(1);
+        this.wait(4);
         this.write(ta, ((data >>> 4) | (this.regs.A << 4)) & 0xFF);
-        this.wait(3);
         this.regs.A = (this.regs.A & 0xF0) | (data & 0x0F);
 
         this.regs.F.N = this.regs.F.H = 0;
