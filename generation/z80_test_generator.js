@@ -1450,8 +1450,8 @@ class Z80_test_generator {
         let WZH = this.read((x+1) & 0xFFFF);
         this.writereg('WZ', (WZH << 8) | WZL);
         this.wait(1);
-        this.write(x, this.readreg(y) & 0xFF);
         this.write((x+1) & 0xFFFF, (this.readreg(y) & 0xFF00) >>> 8);
+        this.write(x, this.readreg(y) & 0xFF);
         this.wait(2);
         this.writereg(y, this.regs.WZ);
     }
