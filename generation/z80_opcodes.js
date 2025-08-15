@@ -602,8 +602,8 @@ const Z80_opcode_matrix_premn = {
     //0xFD: new Z80_opcode_info(0xFD, Z80_MN.),
     0xFE: new Z80_opcode_info(0xFE, Z80_MN.CP_a_n, ''),
     0xFF: new Z80_opcode_info(0xFF, Z80_MN.RST_o, '', '7'),
-    0x100: new Z80_opcode_info(0x100, Z80_MN.IRQ, 'IRQ'),
-    0x101: new Z80_opcode_info(0x101, Z80_MN.RESET, 'RESET')
+    // 0x100: new Z80_opcode_info(0x100, Z80_MN.IRQ, 'IRQ'),
+    // 0x101: new Z80_opcode_info(0x101, Z80_MN.RESET, 'RESET')
 };
 
 function Z80_fill_mnemonics(what) {
