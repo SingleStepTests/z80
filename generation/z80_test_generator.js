@@ -2479,10 +2479,9 @@ class Z80_test_generator {
     }
 }
 
-function generate_Z80_tests(seed=null, CMOS) {
+function generate_Z80_tests(seed, CMOS) {
     console.log('FULL MEMCYCLES?', Z80_DO_FULL_MEMCYCLES);
-    if (seed !== null) rand_seed = seed;
-    rand_seed = 'yo';
+    rand_seed = seed;
     let os1 = new Uint8Array(1);
     let os2 = new Uint8Array(2);
     let os4 = new Uint8Array(4);
