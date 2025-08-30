@@ -4,7 +4,7 @@ var seed_input, numtests_input;
 window.onload = function() {
     seed_input = document.getElementById('seed');
     dconsole = new dct();
-    seed_input.value = "apples and oranges";
+    seed_input.value = "yo";
     numtests_input = document.getElementById('numtests');
     numtests_input.value = '1000';
 }
@@ -16,7 +16,6 @@ class dct {
 
     addl(order, what) {
         console.log('LOG:', what);
-        this.el.innerHTML = what;
     }
 }
 var dconsole;
@@ -40,5 +39,6 @@ function click_generate_z80_tests() {
     Z80_DO_FULL_MEMCYCLES = !simplified_mem;
     Z80_DO_MEM_REFRESHES = refresh; // Put I/R on address bus
     Z80_NULL_WAIT_STATES = nullwaits;
+    Z80_NUM_TO_GENERATE = numtests;
     generate_Z80_tests(seed, CMOS);
 }
