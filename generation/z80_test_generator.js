@@ -1652,11 +1652,16 @@ class Z80_test_generator {
 
     LD_irr_n(x) {
         this.Q(0);
-        let addr = this.displace(x, 0);
-        let n = this.operand();
-        this.wait(2);
-        this.write(addr, n);
-    }
+        if (x === 'HL') {
+            let addr = this.displace(x, 2);
+            this.write(addr, this.operand());
+        }
+        else {
+            let addr = this.displace(x, 0);
+            let n = this.operand();
+            this.wait(2);
+            this.write(addr, n);
+        }}
 
     LD_irr_r(x, y) {
         this.Q(0);
