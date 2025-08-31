@@ -1652,7 +1652,7 @@ class Z80_test_generator {
 
     LD_irr_n(x) {
         this.Q(0);
-        if (x === 'HL') {
+        if (this.rprefix === 0) {
             let addr = this.displace(x, 2);
             this.write(addr, this.operand());
         }
