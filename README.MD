@@ -6,118 +6,145 @@ Each .json file represents an instruction sequence. Each one contains 1000 tests
 
 ```json
 {
-  "name": "0A 0000",
-  "initial": {
-    "pc": 16826,
-    "sp": 9383,
-    "a": 64,
-    "b": 95,
-    "c": 205,
-    "d": 147,
-    "e": 168,
-    "f": 79,
-    "h": 98,
-    "l": 251,
-    "i": 60,
-    "r": 66,
-    "ei": 0,
-    "wz": 56058,
-    "ix": 14528,
-    "iy": 18788,
-    "af_": 48718,
-    "bc_": 45204,
-    "de_": 42805,
-    "hl_": 59464,
-    "im": 0,
-    "p": 1,
-    "q": 0,
-    "iff1": 1,
-    "iff2": 1,
-    "ram": [
-      [
-        16826,
-        10
-      ],
-      [
-        24525,
-        174
-      ]
+    "name": "DB 0000",
+    "initial": {
+        "pc": 49774,
+        "sp": 7765,
+        "a": 227,
+        "b": 173,
+        "c": 249,
+        "d": 142,
+        "e": 238,
+        "f": 140,
+        "h": 21,
+        "l": 190,
+        "i": 62,
+        "r": 0,
+        "ei": 0,
+        "wz": 6102,
+        "ix": 29661,
+        "iy": 5464,
+        "af_": 27987,
+        "bc_": 37392,
+        "de_": 52402,
+        "hl_": 41834,
+        "im": 0,
+        "p": 1,
+        "q": 0,
+        "iff1": 0,
+        "iff2": 1,
+        "ram": [
+            [
+                49774,
+                219
+            ],
+            [
+                49775,
+                249
+            ]
+        ]
+    },
+    "final": {
+        "a": 155,
+        "b": 173,
+        "c": 249,
+        "d": 142,
+        "e": 238,
+        "f": 140,
+        "h": 21,
+        "l": 190,
+        "i": 62,
+        "r": 1,
+        "af_": 27987,
+        "bc_": 37392,
+        "de_": 52402,
+        "hl_": 41834,
+        "ix": 29661,
+        "iy": 5464,
+        "pc": 49776,
+        "sp": 7765,
+        "wz": 58362,
+        "iff1": 0,
+        "iff2": 1,
+        "im": 0,
+        "ei": 0,
+        "p": 0,
+        "q": 0,
+        "ram": [
+            [
+                49774,
+                219
+            ],
+            [
+                49775,
+                249
+            ]
+        ]
+    },
+    "cycles": [
+        [
+            49774,
+            null,
+            "----"
+        ],
+        [
+            49774,
+            null,
+            "r-m-"
+        ],
+        [
+            15872,
+            219,
+            "----"
+        ],
+        [
+            15872,
+            null,
+            "----"
+        ],
+        [
+            49775,
+            null,
+            "----"
+        ],
+        [
+            49775,
+            null,
+            "r-m-"
+        ],
+        [
+            49775,
+            249,
+            "----"
+        ],
+        [
+            58361,
+            null,
+            "----"
+        ],
+        [
+            58361,
+            null,
+            "----"
+        ],
+        [
+            58361,
+            null,
+            "r--i"
+        ],
+        [
+            58361,
+            155,
+            "----"
+        ]
+    ],
+    "ports": [
+        [
+            58361,
+            155,
+            "r"
+        ]
     ]
-  },
-  "final": {
-    "a": 174,
-    "b": 95,
-    "c": 205,
-    "d": 147,
-    "e": 168,
-    "f": 79,
-    "h": 98,
-    "l": 251,
-    "i": 60,
-    "r": 67,
-    "af_": 48718,
-    "bc_": 45204,
-    "de_": 42805,
-    "hl_": 59464,
-    "ix": 14528,
-    "iy": 18788,
-    "pc": 16827,
-    "sp": 9383,
-    "wz": 24526,
-    "iff1": 1,
-    "iff2": 1,
-    "im": 0,
-    "ei": 0,
-    "p": 0,
-    "q": 0,
-    "ram": [
-      [
-        16826,
-        10
-      ],
-      [
-        24525,
-        174
-      ]
-    ]
-  },
-  "cycles": [
-    [
-      16826,
-      null,
-      "----"
-    ],
-    [
-      16826,
-      null,
-      "r-m-"
-    ],
-    [
-      15426,
-      10,
-      "----"
-    ],
-    [
-      15426,
-      null,
-      "----"
-    ],
-    [
-      24525,
-      null,
-      "----"
-    ],
-    [
-      24525,
-      null,
-      "r-m-"
-    ],
-    [
-      24525,
-      174,
-      "----"
-    ]
-  ]
 }
 ```
 
@@ -135,7 +162,7 @@ The "ram" section holds the contents of RAM.
 
 Moving on, the "final" structure holds all the same info, but after the instruction has finished running.
 
-Finally, "cycles" contains a list of processor bus states, sampled BETWEEN CYCLES.
+"cycles" contains a list of processor bus states, sampled BETWEEN CYCLES.
 We have this:
 
 [24525, 174, "r-m-" ]
@@ -143,6 +170,13 @@ We have this:
 This means the Address pins are set to 24525, the Data pins set to 174, and READ and MEMORY REQUEST pins are set (r and m). There are also w for write and i for I/O REQUEST.
 
 A null value for the address or data pins refers to when the bus is electrically disconnected from the processor internals, so the value doesn't matter. For convenience, we just use the last address generated, but this is a configurable option too.
+
+Finally, IO instructions contains a "ports" array with a single element representing the I/O address space transaction. 
+- The first value is the full 16-bit I/O space address.
+- The second value is the value read or written. 
+- The type is either "r" for read (e.g. IN) or "w" for write (e.g. OUT). 
+
+-----
 
 IMPORTANT: here are the configurable options and their default values:
 
